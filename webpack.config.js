@@ -22,7 +22,7 @@ module.exports = {
     new ESLintPlugin(),
     new Dotenv(),
     new HtmlWebpackPlugin({
-      title: 'Shape Tracker',
+      title: 'Team-Plant',
       template: './src/index.html',
       inject: 'body'
     })

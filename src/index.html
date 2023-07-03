@@ -8,17 +8,18 @@
 <body>
   <!-- form
   Search plant name to get ('q')
-  Search by criterea (sunlight, watering, cycle)
+  Search by criteria (sunlight, watering, cycle)
   * sunlight options: full_shade, part_shade, sun-part_shade, full_sun
   * watering options: frequent, average, minimum, none
   * cycle: perennial, annual, biennial, biannual
   Search for nursery (by zipcode) -->
-  <form>
-    <input type="text" name="plantName" id="plantName">
+  <form id="plantSearch">
+
     <label for="plantName">What plant are you looking for?</label>
+    <input type="text" name="plantName" id="plantName">
     <button type="submit">Find the plant!</button>
   </form>
-  <form>
+  <form id="criteriaSearch">
     <h1>How much sun?</h1>
     <select id="sunlight">
       <option value="full_shade">Full shade</option>
@@ -42,11 +43,17 @@
     </select><br>
     <button type="submit">Find the plant by criteria</button>
   </form><br>
-  <form>
+  <div id=plant-results-></div>
+
+  <form id="nurserySearch">
     <label for="zipcode">Enter your zipcode</label>
     <input type="number" name="zipcode" id="zipcode">
-    <!-- add button -->
+    <button type="submit">Find a nursery near you!</button>
   </form>
+  <div id="nursery-results"></div>
+
+
 </body>
+
 
 </html>
