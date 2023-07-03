@@ -6,7 +6,47 @@
 </head>
 
 <body>
-
+  <!-- form
+  Search plant name to get ('q')
+  Search by criterea (sunlight, watering, cycle)
+  * sunlight options: full_shade, part_shade, sun-part_shade, full_sun
+  * watering options: frequent, average, minimum, none
+  * cycle: perennial, annual, biennial, biannual
+  Search for nursery (by zipcode) -->
+  <form>
+    <input type="text" name="plantName" id="plantName">
+    <label for="plantName">What plant are you looking for?</label>
+    <button type="submit">Find the plant!</button>
+  </form>
+  <form>
+    <h1>How much sun?</h1>
+    <select id="sunlight">
+      <option value="full_shade">Full shade</option>
+      <option value="part_shade">Part shade</option>
+      <option value="sun-part_shade">Sun part shade</option>
+      <option value="full_sun">Full sun</option>
+    </select><br>
+    <h1>How much watering?</h1>
+    <select id="watering">
+      <option value="frequent">Frequent</option>
+      <option value="average">Average</option>
+      <option value="minimum">Minimum</option>
+      <option value="none">None</option>
+    </select>
+    <h1>What is the cycle?</h1>
+    <select id="cycle">
+      <option value="perennial">Perennial</option>
+      <option value="annual">Annual</option>
+      <option value="biennial">Biennial</option>
+      <option value="biannual">Biannual</option>
+    </select><br>
+    <button type="submit">Find the plant by criteria</button>
+  </form><br>
+  <form>
+    <label for="zipcode">Enter your zipcode</label>
+    <input type="number" name="zipcode" id="zipcode">
+    <!-- add button -->
+  </form>
 </body>
 
 </html>
