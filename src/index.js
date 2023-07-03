@@ -5,72 +5,62 @@ function getPlantByName(plantSearch){
         .then(function(response){
             if (response){
                 console.log(response.data)
-                printList1(response);
+                printList(response);
             } else {
                 console.log(response)
             }
         });
 }
 
-
-// function getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput){
-//     PlantService.getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput)
-//     .then(function(response){
-//         if (response.data){
-//             printList2(response);
-//         }
-//         else{
-//             printError(response);
-//         }
-//     });
-// }
-
-
-function printList1(response) {
-    //target div
+function printList(response) {
     const newList = document.createElement("ul");
     let newArray = response.data;
-
-    // Create a set to store the names of the plants we've already added
     let plantNames = new Set();
 
+    if(response.total === 0) {
+        let error = document.createElement('small');
+        error.innerText = 'Error, your search is not found';
+        document.getElementById('nursery-results').appendChild(error);
+    }
+
     newArray.forEach(function(object) {
-        
         if (object.cycle.includes('Upgrade')){
             object = '';
         } else {
-            // Check if we've already added a plant with this name
             if (!plantNames.has(object.common_name)) {
-                let newListItem = document.createElement("li");
-                newListItem.innerText = object.common_name;
-                newList.append(newListItem);
-                console.log(newListItem);
-                
-                // Add the name of the plant to our set
+                let cardDiv = document.createElement('div');
+                cardDiv.innerHTML = `
+                <div id="${object.common_name}-wrapper">
+                <input class="hidden-checkbox" id="${object.id}" type="checkbox">
+                <label for="${object.id}">${object.common_name}</label>
+                </div>
+                `;
+                document.getElementById('nursery-results').appendChild(cardDiv);
+                setupCheckboxListener(object.id); // This sets up the listener for the newly created checkbox
                 plantNames.add(object.common_name);
             }
         }
+    });
+
+    document.getElementById('nursery-results').appendChild(newList);
+}
+
+function setupCheckboxListener(id) {
+    const checkbox = document.getElementById(id);
+    checkbox.addEventListener('click', function (e) {
+        PlantService.getPlantInfo(e.target.id);
         
     });
-    document.getElementById('nursery-results').appendChild(newList);
 }
 
 function handlePlantSearch(event) {
     event.preventDefault();
-    //Get elemnt
     let plantName = document.getElementById('plantName');
     let plantNameValue = plantName.value;
     console.log(plantNameValue);
 
-    //Pass value to print or error functions
     getPlantByName(plantNameValue);
-    
 }
 
-document.querySelector("#plantSearch").addEventListener("submit", handlePlantSearch)
 
-
-// function printError(response) {
-
-//     ///target div
-// }
+document.querySelector("#plantSearch").addEventListener("submit", handlePlantSearch);
