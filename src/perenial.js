@@ -15,7 +15,7 @@ export default class PlantService {
     }
 
     static getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput) {
-        fetch(`https://perenual.com/api/species-list?key=${process.env.API_KEY}&cycle=${cycleInput}&sunlight=${cycleInput}&watering=${wateringInput}`)
+        fetch(`https://perenual.com/api/species-list?key=${process.env.API_KEY}&cycle=${cycleInput}&sunlight=${sunlightInput}&watering=${wateringInput}`)
             .then(function(response) {
                 if (!response.ok) {
                     const errorMessage = `${response.status} ${response.statusText}`;
