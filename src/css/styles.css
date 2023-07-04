@@ -129,11 +129,6 @@ body {
   transition: all 0.3s ease;
 }
 
-.card:hover .icon svg path {
-  fill: url('#gradientColor');
-  transition: all 0.3s ease;
-}
-
 a {
   text-decoration: none;
 }
