@@ -27,7 +27,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  cursor: pointer;
   font-family: 'Raleway';
   background: #93e4c1;
 }
@@ -61,6 +60,7 @@ body {
   background-color: rgb(33, 148, 141);
   border-radius: 0.375rem;
   border: solid black 1px;
+  cursor: pointer;
 }
 
 .card {
@@ -149,10 +149,8 @@ a {
 }
 
 .display-name {
-  /* width: 100%;
-  max-width: 200%; */
   min-width: auto;
-  height: 250px;
+  height: auto;
   margin: 20px;
   border-radius: 10px;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
@@ -166,4 +164,33 @@ a {
   flex-direction: column;
   cursor: pointer;
   font-family: 'Raleway';
+  padding: 5%;
+}
+
+.nursery-results {
+  /* width: 100%;
+    max-width: 200%; */
+  min-width: auto;
+  height: auto;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+  border: 2px solid rgba(7, 7, 7, 0.12);
+  font-size: 22px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Raleway';
+  padding: 5%;
+}
+
+.hidden-checkbox {
+  opacity: 0;
+}
+
+label {
+  cursor: pointer;
 }
