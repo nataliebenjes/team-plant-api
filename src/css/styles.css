@@ -156,8 +156,6 @@ a {
 }
 
 .search-results {
-  /* width: 100%;
-    max-width: 200%; */
   min-width: auto;
   height: auto;
   margin: 20px;
