@@ -4,11 +4,11 @@ import './css/styles.css';
 function getPlantByName(plantSearch){
     PlantService.getPlantByName(plantSearch)
         .then(function(response){
-            if (response){
+            if (response.data){
                 console.log(response.data)
-                printList(response);
+                printList(response.data);
             } else {
-                console.log(response)
+                printError(response);
             }
         });
 }
@@ -71,14 +71,20 @@ function setupCheckboxListener(id) {
     });
 }
 
+function printError(response) {
+    let error = document.createElement('small');
+    error.innerText = `Error, there was an issue with your search call: ${response}`;
+    document.querySelector('.nursery-results').appendChild(error);
+}
+
 function createPlantName (response) {
     // Ensure response object and required properties exist
     if (response && response.common_name && response.description && response.default_image && response.default_image.medium_url) {
         let displayName = document.querySelector('.display-name')
         displayName.innerHTML =
-            `<h3>${response.common_name}</h3>
-            <p>${response.description}</p>
-            <img src="${response.default_image.medium_url}" alt="${response.common_name}">`;
+            `<h3 class ="display-name-h">${response.common_name}</h3>
+            <p class ="display-name-p">${response.description}</p>
+            <img class ="display-name-img" src="${response.default_image.medium_url}" alt="${response.common_name}">`;
     } else {
         console.error('Invalid response object:', response);
     }
@@ -87,6 +93,10 @@ function createPlantName (response) {
 //form for the search
 function handlePlantSearch(event) {
     event.preventDefault();
+    //Empty the container
+    document.querySelector('.nursery-results').innerHTML = '';
+    document.querySelector('.display-name').innerHTML = '';
+
     let plantName = document.getElementById('plantName');
     let plantNameValue = plantName.value;
     console.log(plantNameValue);
