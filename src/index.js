@@ -3,9 +3,14 @@ import './css/styles.css';
 // Fetch response from API via query search
 function getPlantByName(plantSearch) {
     PlantService.getPlantByName(plantSearch)
+<<<<<<< HEAD
         .then(function (response) {
             if (response.data) {
                 console.log(response.data)
+=======
+        .then(function(response){
+            if (response.data){
+>>>>>>> businessdev
                 printList(response);
             } else {
                 printError(response);
@@ -16,9 +21,14 @@ function getPlantByName(plantSearch) {
 //Fetch response from API via criteriaSearch
 function getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput) {
     PlantService.getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput)
+<<<<<<< HEAD
         .then(function (response) {
             if (response.data) {
                 console.log(response.data)
+=======
+        .then(function(response){
+            if (response.data){
+>>>>>>> businessdev
                 printList(response);
             } else {
                 printError(response);
@@ -37,7 +47,7 @@ function printList(response) {
     if (response.total === 0) {
         //Prints Error if 0 result
         let error = document.createElement('small');
-        error.innerText = 'Error, your search is not found.';
+        error.innerText = 'Error, your search was not found.';
         document.querySelector('.search-results').appendChild(error);
     }
     //Check validation and display results in the DOM
@@ -50,6 +60,7 @@ function printList(response) {
             if (!plantNames.has(object.common_name)) {
                 let cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
+                <div id="${object.common_name}-wrapper">
                 <label for="${object.id}"><input class="hidden-checkbox" id="${object.id}" type="checkbox">${object.common_name}</label>
                 </div>
                 `;
@@ -70,6 +81,7 @@ function setupCheckboxListener(id) {
 
         //passing the id of the selected element into getPlantInfo API call
         PlantService.getPlantInfo(e.target.id)
+<<<<<<< HEAD
             .then(function (response) {
                 if (response) {
                     createPlantName(response);
@@ -79,6 +91,15 @@ function setupCheckboxListener(id) {
             });
 
 
+=======
+            .then(function(response){
+                if (response){
+                    createPlantName(response);
+                } else {
+                    printError(response);
+                }
+            }); 
+>>>>>>> businessdev
     });
 }
 
@@ -133,7 +154,7 @@ function handleCriteriaSearch(event) {
     console.log(cycleInput, sunlightInput, wateringInput);
 
     //Pass the input user into the fetch API
-    getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput)
+    getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput);
 
 }
 
