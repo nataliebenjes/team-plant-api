@@ -13,6 +13,19 @@ function getPlantByName(plantSearch){
         });
 }
 
+//Fetch response from API via criteriaSearch
+function getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput){
+    PlantService.getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput)
+        .then(function(response){
+            if (response.data){
+                console.log(response.data)
+                printList(response);
+            } else {
+                printError(response);
+            }
+        });
+}
+
 // Takes 
 function printList(response) {
     //Store data from Json response
@@ -37,9 +50,7 @@ function printList(response) {
             if (!plantNames.has(object.common_name)) {
                 let cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
-                <div id="${object.common_name}-wrapper">
-                <input class="hidden-checkbox" id="${object.id}" type="checkbox">
-                <label for="${object.id}">${object.common_name}</label>
+                <label for="${object.id}"><input class="hidden-checkbox" id="${object.id}" type="checkbox">${object.common_name}</label>
                 </div>
                 `;
                 //Display the results in the DOM
@@ -71,6 +82,7 @@ function setupCheckboxListener(id) {
     });
 }
 
+//function that will print an error message if API call didn't work
 function printError(response) {
     let error = document.createElement('small');
     error.innerText = `Error, there was an issue with your search call: ${response}`;
@@ -90,7 +102,7 @@ function createPlantName (response) {
     }
 }
 
-//form for the search
+//form for name search
 function handlePlantSearch(event) {
     event.preventDefault();
     //Empty the container
@@ -105,5 +117,27 @@ function handlePlantSearch(event) {
     getPlantByName(plantNameValue);
 }
 
+//form for criteria search
+function handleCriteriaSearch(event) {
+    event.preventDefault();
+    //Empty the container
+    document.querySelector('.search-results').innerHTML = '';
+    document.querySelector('.display-name').innerHTML = '';
+
+    let sunlightInput = document.getElementById('sunlight').value;
+    let wateringInput = document.getElementById('watering').value;
+    let cycleInput = document.getElementById('cycle').value;
+
+    console.log(cycleInput, sunlightInput, wateringInput);
+
+    //Pass the input user into the fetch API
+    getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput)
+
+}
+
 //Event listener
-document.querySelector("#plantSearch").addEventListener("submit", handlePlantSearch);
+if (document.querySelector("#plantSearch")){
+    document.querySelector("#plantSearch").addEventListener("submit", handlePlantSearch);
+} else if (document.querySelector("#criteriaSearch")) {
+    document.querySelector("#criteriaSearch").addEventListener("submit", handleCriteriaSearch);
+}
