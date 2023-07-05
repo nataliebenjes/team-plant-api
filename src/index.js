@@ -1,5 +1,5 @@
 import PlantService from "./perenial";
-import './css/styles.css'
+import './css/styles.css';
 // Fetch response from API via query search
 function getPlantByName(plantSearch){
     PlantService.getPlantByName(plantSearch)
@@ -25,7 +25,7 @@ function printList(response) {
         //Prints Error if 0 result
         let error = document.createElement('small');
         error.innerText = 'Error, your search is not found';
-        document.getElementById('nursery-results').appendChild(error);
+        document.querySelector('.nursery-results').appendChild(error);
     }
     //Check validation and display results in the DOM
     newArray.forEach(function(object) {
@@ -43,7 +43,7 @@ function printList(response) {
                 </div>
                 `;
                 //Display the results in the DOM
-                document.getElementById('nursery-results').appendChild(cardDiv);
+                document.querySelector('.nursery-results').appendChild(cardDiv);
                 setupCheckboxListener(object.id); // This sets up the listener for the newly created checkbox
                 plantNames.add(object.common_name);
             }
@@ -53,13 +53,35 @@ function printList(response) {
 }
 //Set checkbox and listen to a click
 function setupCheckboxListener(id) {
+    
     const checkbox = document.getElementById(id);
     checkbox.addEventListener('click', function (e) {
 
         //passing the id of the selected element into getPlantInfo API call
-        PlantService.getPlantInfo(e.target.id);
+        PlantService.getPlantInfo(e.target.id)
+            .then(function(response){
+            if (response){
+                createPlantName(response);
+            } else {
+                console.log(response)
+            }
+        });
+        
         
     });
+}
+
+function createPlantName (response) {
+    // Ensure response object and required properties exist
+    if (response && response.common_name && response.description && response.default_image && response.default_image.medium_url) {
+        let displayName = document.querySelector('.display-name')
+        displayName.innerHTML =
+            `<h3>${response.common_name}</h3>
+            <p>${response.description}</p>
+            <img src="${response.default_image.medium_url}" alt="${response.common_name}">`;
+    } else {
+        console.error('Invalid response object:', response);
+    }
 }
 
 //form for the search
