@@ -3,14 +3,8 @@ import './css/styles.css';
 // Fetch response from API via query search
 function getPlantByName(plantSearch) {
     PlantService.getPlantByName(plantSearch)
-<<<<<<< HEAD
-        .then(function (response) {
-            if (response.data) {
-                console.log(response.data)
-=======
         .then(function(response){
             if (response.data){
->>>>>>> businessdev
                 printList(response);
             } else {
                 printError(response);
@@ -21,14 +15,8 @@ function getPlantByName(plantSearch) {
 //Fetch response from API via criteriaSearch
 function getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput) {
     PlantService.getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput)
-<<<<<<< HEAD
-        .then(function (response) {
-            if (response.data) {
-                console.log(response.data)
-=======
         .then(function(response){
             if (response.data){
->>>>>>> businessdev
                 printList(response);
             } else {
                 printError(response);
@@ -81,17 +69,6 @@ function setupCheckboxListener(id) {
 
         //passing the id of the selected element into getPlantInfo API call
         PlantService.getPlantInfo(e.target.id)
-<<<<<<< HEAD
-            .then(function (response) {
-                if (response) {
-                    createPlantName(response);
-                } else {
-                    console.log(response)
-                }
-            });
-
-
-=======
             .then(function(response){
                 if (response){
                     createPlantName(response);
@@ -99,7 +76,6 @@ function setupCheckboxListener(id) {
                     printError(response);
                 }
             }); 
->>>>>>> businessdev
     });
 }
 
