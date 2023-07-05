@@ -35,7 +35,7 @@ function printList(response) {
     if(response.total === 0) {
         //Prints Error if 0 result
         let error = document.createElement('small');
-        error.innerText = 'Error, your search is not found.';
+        error.innerText = 'Error, your search was not found.';
         document.querySelector('.search-results').appendChild(error);
     }
     //Check validation and display results in the DOM
@@ -48,6 +48,7 @@ function printList(response) {
             if (!plantNames.has(object.common_name)) {
                 let cardDiv = document.createElement('div');
                 cardDiv.innerHTML = `
+                <div id="${object.common_name}-wrapper">
                 <label for="${object.id}"><input class="hidden-checkbox" id="${object.id}" type="checkbox">${object.common_name}</label>
                 </div>
                 `;
