@@ -5,7 +5,6 @@ function getPlantByName(plantSearch){
     PlantService.getPlantByName(plantSearch)
         .then(function(response){
             if (response.data){
-                console.log(response.data)
                 printList(response);
             } else {
                 printError(response);
@@ -18,7 +17,6 @@ function getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput){
     PlantService.getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput)
         .then(function(response){
             if (response.data){
-                console.log(response.data)
                 printList(response);
             } else {
                 printError(response);
@@ -71,14 +69,12 @@ function setupCheckboxListener(id) {
         //passing the id of the selected element into getPlantInfo API call
         PlantService.getPlantInfo(e.target.id)
             .then(function(response){
-            if (response){
-                createPlantName(response);
-            } else {
-                console.log(response)
-            }
-        });
-        
-        
+                if (response){
+                    createPlantName(response);
+                } else {
+                    printError(response);
+                }
+            }); 
     });
 }
 
@@ -92,7 +88,7 @@ function printError(response) {
 function createPlantName (response) {
     // Ensure response object and required properties exist
     if (response && response.common_name && response.description && response.default_image && response.default_image.medium_url) {
-        let displayName = document.querySelector('.display-name')
+        let displayName = document.querySelector('.display-name');
         displayName.innerHTML =
             `<h3 class ="display-name-h">${response.common_name}</h3>
             <p class ="display-name-p">${response.description}</p>
@@ -131,7 +127,7 @@ function handleCriteriaSearch(event) {
     console.log(cycleInput, sunlightInput, wateringInput);
 
     //Pass the input user into the fetch API
-    getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput)
+    getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput);
 
 }
 
