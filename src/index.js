@@ -1,10 +1,13 @@
 import PlantService from "./perenial";
 import './css/styles.css';
+import MapSearch from "./map_api";
+
+
 // Fetch response from API via query search
 function getPlantByName(plantSearch) {
     PlantService.getPlantByName(plantSearch)
-        .then(function(response){
-            if (response.data){
+        .then(function (response) {
+            if (response.data) {
                 printList(response);
             } else {
                 printError(response);
@@ -15,8 +18,8 @@ function getPlantByName(plantSearch) {
 //Fetch response from API via criteriaSearch
 function getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput) {
     PlantService.getPlantListFromSelectors(cycleInput, sunlightInput, wateringInput)
-        .then(function(response){
-            if (response.data){
+        .then(function (response) {
+            if (response.data) {
                 printList(response);
             } else {
                 printError(response);
@@ -69,13 +72,13 @@ function setupCheckboxListener(id) {
 
         //passing the id of the selected element into getPlantInfo API call
         PlantService.getPlantInfo(e.target.id)
-            .then(function(response){
-                if (response){
+            .then(function (response) {
+                if (response) {
                     createPlantName(response);
                 } else {
                     printError(response);
                 }
-            }); 
+            });
     });
 }
 
@@ -134,9 +137,81 @@ function handleCriteriaSearch(event) {
 
 }
 
+
+// Business Logic
+function postalCodeSearch(city, zipcode) {
+    let promise = MapSearch.postalCodeSearch(city, zipcode);
+    promise.then(function (getLonLat) {
+        // printElements(getLonLat, city, zipcode);
+        const coordArray = getLonLat.resourceSets[0].resources[0].point.coordinates
+        console.log(coordArray);
+        const coordString = coordArray.join(', ');
+        console.log(coordString);
+        nurserySearchTwo(coordString);
+    }, function (errorArray) {
+        printMapError(errorArray);
+    });
+}
+
+// function staticMap(coordString2) {
+//     let promise = MapSearch.nurserySearchTwo(coordString2);
+//     promise.then(function (response) {
+//         console.log(response);
+//     })
+// }
+
+function nurserySearchTwo(coordString) {
+    let promise = MapSearch.nurserySearchTwo(coordString);
+    promise.then(function (info) {
+        console.log(info.resourceSets[0]);
+        printElements(info.resourceSets[0].resources);
+        const coordArray2 = info.resourceSets[0].resources.geocodePoints[0].coordinates;
+        console.log(info.resourceSets[0].resources.geocodePoints[0].coordinates)
+        const coordString2 = coordArray2.join(', ');
+        // staticMap(coordString2);
+    }, function (errorArray) {
+        printMapError(errorArray);
+    });
+}
+
+
+function printMapError(apiResponse) {
+    document.querySelector('#showResponse').innerText = `We were unable to get your conversion due to an ${apiResponse.statusDescription} with ${apiResponse.errorDetails}`;
+}
+
+function printElements(info) {
+    console.log(info);
+    let showResponseElement = document.querySelector('#showResponse');
+    showResponseElement.innerHTML = ''; // Clear the content before appending
+    for (let i = 0; i < 5; i++) {
+        const websiteLink = `<a href="${info[i].Website}" target="_blank">${info[i].Website}</a>`;
+        showResponseElement.innerHTML += `
+        
+        <h1>${info[i].name}<h1>
+        <ul>
+        <li>Phone number: ${info[i].PhoneNumber}</li>
+        <li>Buisness Address: ${info[i].Address.addressLine}</li>
+        <li>Website: ${websiteLink}</li>
+        </ul>
+        <br>`;
+    }
+}
+
+function handleFormSubmission(event) {
+    event.preventDefault();
+    const city = document.querySelector('#city').value;
+    document.querySelector('#city').value = null;
+    const zipcode = document.querySelector('#zipcode').value;
+    document.querySelector('#zipcode').value = null;
+    postalCodeSearch(city, zipcode);
+    console.log(city, zipcode);
+}
+
 //Event listener
 if (document.querySelector("#plantSearch")) {
     document.querySelector("#plantSearch").addEventListener("submit", handlePlantSearch);
 } else if (document.querySelector("#criteriaSearch")) {
     document.querySelector("#criteriaSearch").addEventListener("submit", handleCriteriaSearch);
+} else if (document.querySelector('#nurserySearch')) {
+    document.querySelector("#nurserySearch").addEventListener("submit", handleFormSubmission);
 }
