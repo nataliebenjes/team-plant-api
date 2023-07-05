@@ -6,21 +6,21 @@
 </head>
 
 <body>
-  <form id="criteriaSearch">
+  <a href="index.html"><button>back to home page</button></a>
+  <form class="subpage" id="criteriaSearch">
     <h2 class="title">How much sun?</h2>
     <select id="sunlight">
       <option value="full_shade">Full shade</option>
       <option value="part_shade">Part shade</option>
       <option value="sun-part_shade">Sun part shade</option>
       <option value="full_sun">Full sun</option>
-    </select><br>
+    </select>
 
     <h2 class="title">How much watering?</h2>
     <select id="watering">
       <option value="frequent">Frequent</option>
       <option value="average">Average</option>
       <option value="minimum">Minimum</option>
-      <option value="none">None</option>
     </select>
 
     <h2 class="title">What is the cycle?</h2>
@@ -32,11 +32,10 @@
     </select><br>
     <button type="submit" class="button">Find the plant by criteria</button>
   </form><br>
-  <div id=plant-results-></div>
+  <div class="hidden" id="criteriaHidden">
+    <div class="search-results"></div>
+    <div class="display-name"></div>
+  </div>
 </body>
-
-<div class="display-name">
-
-</div>
 
 </html>

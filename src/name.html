@@ -6,14 +6,17 @@
 </head>
 
 <body>
-  <form id="plantSearch">
+  <a href="index.html"><button>back to home page</button></a>
+  <form class="subpage" id="plantSearch">
     <h2 class="title">What plant are you looking for?</h2>
-    <h3>Find Plants By Name</h3>
-    <input type="text" name="plantName" id="plantName">
+    <input placeholder="plant name" type="text" name="plantName" id="plantName">
     <button type="submit" class="button">Find the plant!</button>
   </form>
-  <div class="nursery-results"></div>
-  <div class="display-name"></div>
+  <div class="hidden" id="allResults">
+    <div class="search-results"></div>
+    <div class="display-name"></div>
+  </div>
+
 
 </body>
 
