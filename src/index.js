@@ -6,7 +6,7 @@ function getPlantByName(plantSearch){
         .then(function(response){
             if (response.data){
                 console.log(response.data)
-                printList(response.data);
+                printList(response);
             } else {
                 printError(response);
             }
@@ -24,8 +24,8 @@ function printList(response) {
     if(response.total === 0) {
         //Prints Error if 0 result
         let error = document.createElement('small');
-        error.innerText = 'Error, your search is not found';
-        document.querySelector('.nursery-results').appendChild(error);
+        error.innerText = 'Error, your search is not found.';
+        document.querySelector('.search-results').appendChild(error);
     }
     //Check validation and display results in the DOM
     newArray.forEach(function(object) {
@@ -43,7 +43,7 @@ function printList(response) {
                 </div>
                 `;
                 //Display the results in the DOM
-                document.querySelector('.nursery-results').appendChild(cardDiv);
+                document.querySelector('.search-results').appendChild(cardDiv);
                 setupCheckboxListener(object.id); // This sets up the listener for the newly created checkbox
                 plantNames.add(object.common_name);
             }
@@ -74,7 +74,7 @@ function setupCheckboxListener(id) {
 function printError(response) {
     let error = document.createElement('small');
     error.innerText = `Error, there was an issue with your search call: ${response}`;
-    document.querySelector('.nursery-results').appendChild(error);
+    document.querySelector('.search-results').appendChild(error);
 }
 
 function createPlantName (response) {
@@ -94,7 +94,7 @@ function createPlantName (response) {
 function handlePlantSearch(event) {
     event.preventDefault();
     //Empty the container
-    document.querySelector('.nursery-results').innerHTML = '';
+    document.querySelector('.search-results').innerHTML = '';
     document.querySelector('.display-name').innerHTML = '';
 
     let plantName = document.getElementById('plantName');
