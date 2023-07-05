@@ -1,4 +1,5 @@
 import PlantService from "./perenial";
+import './css/styles.css'
 // Fetch response from API via query search
 function getPlantByName(plantSearch){
     PlantService.getPlantByName(plantSearch)
