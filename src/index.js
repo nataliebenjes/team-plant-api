@@ -165,9 +165,9 @@ function nurserySearchTwo(coordString) {
     promise.then(function (info) {
         console.log(info.resourceSets[0]);
         printElements(info.resourceSets[0].resources);
-        const coordArray2 = info.resourceSets[0].resources.geocodePoints[0].coordinates;
+        // const coordArray2 = info.resourceSets[0].resources.geocodePoints[0].coordinates;
         console.log(info.resourceSets[0].resources.geocodePoints[0].coordinates)
-        const coordString2 = coordArray2.join(', ');
+        // const coordString2 = coordArray2.join(', ');
         // staticMap(coordString2);
     }, function (errorArray) {
         printMapError(errorArray);
@@ -181,7 +181,7 @@ function printMapError(apiResponse) {
 
 function printElements(info) {
     console.log(info);
-    let showResponseElement = document.querySelector('#showResponse');
+    let showResponseElement = document.querySelector('.display-name');
     showResponseElement.innerHTML = ''; // Clear the content before appending
     for (let i = 0; i < 5; i++) {
         const websiteLink = `<a href="${info[i].Website}" target="_blank">${info[i].Website}</a>`;
