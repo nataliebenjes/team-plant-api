@@ -94,9 +94,9 @@ function createPlantName(response) {
     if (response && response.common_name && response.description && response.default_image && response.default_image.medium_url) {
         let displayName = document.querySelector('.display-name');
         displayName.innerHTML =
-            `<h3 class ="display-name-h">${response.common_name}</h3>
-            <p class ="display-name-p">${response.description}</p>
-            <img class ="display-name-img" src="${response.default_image.medium_url}" alt="${response.common_name}">`;
+            `<h3 class="display-name-h">${response.common_name}</h3>
+            <p>${response.description}</p>
+            <img src="${response.default_image.medium_url}" alt="${response.common_name}">`;
     } else {
         console.error('Invalid response object:', response);
     }
@@ -187,7 +187,7 @@ function printElements(info) {
         const websiteLink = `<a href="${info[i].Website}" target="_blank">${info[i].Website}</a>`;
         showResponseElement.innerHTML += `
         
-        <h1>${info[i].name}<h1>
+        <h2>${info[i].name}<h2>
         <ul>
         <li>Phone number: ${info[i].PhoneNumber}</li>
         <li>Buisness Address: ${info[i].Address.addressLine}</li>
@@ -199,6 +199,7 @@ function printElements(info) {
 
 function handleFormSubmission(event) {
     event.preventDefault();
+    document.querySelector('#zipcodeHidden').removeAttribute('class');
     const city = document.querySelector('#city').value;
     document.querySelector('#city').value = null;
     const zipcode = document.querySelector('#zipcode').value;
