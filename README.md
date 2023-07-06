@@ -31,7 +31,7 @@ Plant Professor is a web application built using HTML, CSS, and JavaScript. It c
 - \`criteria.html\`: Enables users to search for plants based on specific growth conditions such as sunlight requirements, watering needs, and plant life cycle.
 - \`zipcode.html\`: Allows users to search for nurseries near them by providing their city and zipcode.
 
-###Technologies Used:
+### Technologies Used:
 
 * _HTML_
 * _CSS_
@@ -47,8 +47,8 @@ Plant Professor is a web application built using HTML, CSS, and JavaScript. It c
 1. Clone the repository:
 
 ```bash
-   \`$ git clone https://github.com/nataliebenjes/team-plant-api/tree/main\`
-   \`$ cd team-plant-api\`
+$ git clone https://github.com/nataliebenjes/team-plant-api/tree/main
+$ cd team-plant-api
 ```
 
 2. Install the dependencies
