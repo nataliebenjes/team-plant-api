@@ -195,3 +195,15 @@ img {
   border: #fff solid 1px;
   background-color: #fff;
 }
+
+#criteriaHidden {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#allResults {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
