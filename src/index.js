@@ -79,6 +79,12 @@ function setupCheckboxListener(id) {
                     printError(response);
                 }
             });
+
+        let mapElement = document.querySelector('.display-map');
+        mapElement.innerHTML = `
+        <iframe src="https://perenual.com/api/hardiness-map?key=${process.env.API_KEY}&species_id=${e.target.id}" width="100%" height="300" style="border:1px solid black;">
+        </iframe>
+        `;
     });
 }
 

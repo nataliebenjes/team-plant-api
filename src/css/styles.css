@@ -188,3 +188,10 @@ img {
 .hidden {
   opacity: 0;
 }
+
+.display-map {
+  height: 300px;
+  width: 600px;
+  border: #fff solid 1px;
+  background-color: #fff;
+}
