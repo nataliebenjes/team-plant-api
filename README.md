@@ -1,4 +1,4 @@
-\# Plant Professor
+## Plant Professor
 
 Plant Professor is a web application that provides information about plants. Users can search for plants by their common, growth conditions, or find nurseries near them based on their city and zipcode.
 
@@ -12,7 +12,7 @@ Plant Professor is a web application that provides information about plants. Use
 * _Fetch API_
 * _ExchangeRate-API_
 
-\## Table of Contents
+### Table of Contents
 
 - [Project Overview](#project-overview)
 - [Technologies Used](#technologies-Used)
@@ -22,7 +22,7 @@ Plant Professor is a web application that provides information about plants. Use
 - [Contributors](#Contributors)
 - [License](#license)
 
-\## Project Overview
+### Project Overview
 
 Plant Professor is a web application built using HTML, CSS, and JavaScript. It consists of the following pages:
 
@@ -31,7 +31,7 @@ Plant Professor is a web application built using HTML, CSS, and JavaScript. It c
 - \`criteria.html\`: Enables users to search for plants based on specific growth conditions such as sunlight requirements, watering needs, and plant life cycle.
 - \`zipcode.html\`: Allows users to search for nurseries near them by providing their city and zipcode.
 
-\##Technologies Used:
+###Technologies Used:
 
 * _HTML_
 * _CSS_
@@ -42,12 +42,14 @@ Plant Professor is a web application built using HTML, CSS, and JavaScript. It c
 * _Bing Maps API_
 * _Perenual API_
 
-\## Installation
+### Installation
 
 1. Clone the repository:
 
+```bash
    \`$ git clone https://github.com/nataliebenjes/team-plant-api/tree/main\`
    \`$ cd team-plant-api\`
+```
 
 2. Install the dependencies
 
@@ -71,7 +73,7 @@ BING_KEY=your_api_key_number
 $ npm start
 ```
 
-\## Usage
+### Usage
 
 The Plant Professor web application provides a user-friendly interface to search for plant information. Here's a brief description of each page's functionality:
 
@@ -82,13 +84,13 @@ The Plant Professor web application provides a user-friendly interface to search
 
 Simply click on the relevant link or button on the respective page to perform the desired search.
 
-\## Features
+### Features
 
 - Search plants by name: Users can search for plants by their common or Latin names using the \`name.html\` page.
 - Search plants by growth conditions: Users can find plants based on specific growth conditions, such as sunlight requirements, watering needs, and plant life cycle, using the \`criteria.html\` page.
 - Find nurseries near you: Users can search for nurseries near them by providing their city and zipcode on the \`zipcode.html\` page.
 
-\## Contributors
+### Contributors
 The following individuals have contributed to the development of this project:
 
 - [Elshadai "Elle" Hailu](https://github.com/ellehailu)
@@ -98,7 +100,7 @@ The following individuals have contributed to the development of this project:
 - [Jason Church](https://github.com/elijahchurch)
 - [Michael Carroll](https://github.com/mcarroll138)
 
-\## License
+### License
 [MIT License](https://choosealicense.com/licenses/mit/)
 
 Copyright (c) 2023 Elshadai "Elle" Hailu, Natalie Benjes, Suzanne Schuber, Moshe Atia Poston, Jason Church, Michael Carroll.
