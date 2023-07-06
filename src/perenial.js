@@ -44,5 +44,22 @@ export default class PlantService {
             });
     }
 
+    // static getPlantMap(plantID){
+    //     return fetch(`https://perenual.com/api/hardiness-map?key=${process.env.API_KEY}&species_id=${plantID}`)
+    //         .then(function(response) {
+    //             if (!response.ok) {
+    //                 const errorMessage = `${response.status} ${response.statusText}`;
+    //                 throw new Error(errorMessage);
+    //             } else {
+    //                 return response.json();
+    //             }
+    //         })
+    //         .catch(function(error) {
+    //             return error;
+    //         });
+    // }
+
+
+
     
 }
